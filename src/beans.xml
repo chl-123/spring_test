@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+      <!-- <bean id="User" class="com.chl.spring5.User"></bean>-->
+      <!--用set方法注入-->
+       <bean id="book" class="com.chl.spring5.Book">
+
+              <property name="bname" value="ddddd"></property>
+
+              <property name="bauthor" value="aaaa"></property>
+       </bean>
+       <!-- 用构造函数注入-->
+       <bean id="orders" class="com.chl.spring5.Orders">
+           <constructor-arg name="name" value="电脑"></constructor-arg>
+           <constructor-arg name="address" value="China"></constructor-arg>
+       </bean>
+       <!--null 和特殊符号-->
+       <bean id="book2" class="com.chl.spring5.Book">
+           <property name="bname">
+               <null></null>
+           </property>
+           <property name="bauthor">
+               <value><![CDATA[<<dddd>>]]></value>
+           </property>
+       </bean>
+
+       <!--集合类型的注入-->
+
+       <util:list id="utilList">
+       <!--抽取值出来以便其他的bean能用-->
+           <value>eeee</value>
+           <value>eeee</value>
+           <value>eeee</value>
+       </util:list>
+       <bean id="Student" class="com.chl.spring5.Students">
+           <property name="courses">
+               <array>
+                   <value>ddd</value>
+                   <value>dddd</value>
+                   <value>ddddd</value>
+                   <value>dddddd</value>
+               </array>
+           </property>
+           <property name="list">
+               <list>
+                   <value>aaa</value>
+                   <value>aaa</value>
+               </list>
+           </property>
+           <property name="map">
+               <map>
+                   <entry key="dd" value="dd"></entry>
+               </map>
+           </property>
+           <!--list注入外部类对象值-->
+           <property name="list2" >
+               <list>
+                   <ref bean="course1"></ref>
+                   <ref bean="course2"></ref>
+               </list>
+           </property>
+           <!--实现引用抽取的外部list-->
+           <property name="utillist" ref="utilList">
+
+           </property>
+       </bean>
+       <bean id="course1" class="com.chl.spring5.Course">
+           <property name="cname" value="dqqqq"></property>
+       </bean>
+       <bean id="course2" class="com.chl.spring5.Course">
+           <property name="cname" value="wqqqq"></property>
+       </bean>
+
+      <!--工厂bean-->
+       <bean id="mybean" class="com.chl.spring5.factorybean.MyBean"></bean>
+       <!--创建多实例，默认是单实例scope的属性值为prototype时，可以创建多实例
+       设置singleton时加载spring配置文件时就会加创建单实例对象
+       设置protot时，不是在加载spring配置文件时创建对象而是在调用个getBean时创建多实例对象
+
+       -->
+
+       <bean id="book3" class="com.chl.spring5.Book" scope="prototype">
+           <property name="bname">
+               <null></null>
+           </property>
+           <property name="bauthor">
+               <value><![CDATA[<<dddd>>]]></value>
+           </property>
+       </bean>
+       <!--实现自动装配
+           autowire="byName"  注入bean的值和类的属性名称要一致
+           autowire="byType"
+       -->
+       <bean id="dept" class="com.chl.spring5.autowire.Dept"></bean>
+       <bean id="emp" class="com.chl.spring5.autowire.Emp" autowire="byType"></bean>
+       <!--引入外部属性文件-->
+    <!-- 数据库连接池 -->
+        <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+              destroy-method="close">
+            <property name="url" value="${property.url}" />
+            <property name="username" value="${property.username}" />
+            <property name="password" value="${property.password}" />
+            <property name="driverClassName" value="${property.driverClassName}" />
+        </bean>
+      <!--
+      开启注解扫描
+      1.如果扫描多个包，多个包用逗号隔开
+      2,扫描上层路径
+      -->
+      <context:component-scan base-package="com.chl.spring5.service,com.chl.spring5.dao"></context:component-scan>
+    <!--
+
+    use-default-filters="false" 表示不使用默认的filter,自己配置filter
+    context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"
+    扫描的内容
+
+      <context:component-scan base-package="com.chl" use-default-filters="false">
+          <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+      </context:component-scan>
+
+    除了expression="org.springframework.stereotype.Repository"这个包，其他的都扫描
+
+      <context:component-scan base-package="com.chl" >
+
+          <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+      </context:component-scan>
+    -->
+</beans>
