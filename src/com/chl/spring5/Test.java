@@ -83,5 +83,6 @@ public class Test {
         ApplicationContext context=new ClassPathXmlApplicationContext("beans.xml");
         UserService userService=context.getBean("userService", UserService.class);
         userService.add();
+        System.out.println("test");
     }
 }
