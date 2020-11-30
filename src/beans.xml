@@ -6,21 +6,21 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-      <!-- <bean id="User" class="com.chl.spring5.User"></bean>-->
+     <bean id="User" class="com.chl.spring5.IOC.User"></bean>
       <!--用set方法注入-->
-       <bean id="book" class="com.chl.spring5.Book">
+       <bean id="book" class="com.chl.spring5.IOC.Book">
 
               <property name="bname" value="ddddd"></property>
 
               <property name="bauthor" value="aaaa"></property>
        </bean>
        <!-- 用构造函数注入-->
-       <bean id="orders" class="com.chl.spring5.Orders">
+       <bean id="orders" class="com.chl.spring5.IOC.Orders">
            <constructor-arg name="name" value="电脑"></constructor-arg>
            <constructor-arg name="address" value="China"></constructor-arg>
        </bean>
        <!--null 和特殊符号-->
-       <bean id="book2" class="com.chl.spring5.Book">
+       <bean id="book2" class="com.chl.spring5.IOC.Book">
            <property name="bname">
                <null></null>
            </property>
@@ -37,7 +37,7 @@
            <value>eeee</value>
            <value>eeee</value>
        </util:list>
-       <bean id="Student" class="com.chl.spring5.Students">
+       <bean id="Student" class="com.chl.spring5.IOC.Students">
            <property name="courses">
                <array>
                    <value>ddd</value>
@@ -69,22 +69,22 @@
 
            </property>
        </bean>
-       <bean id="course1" class="com.chl.spring5.Course">
+       <bean id="course1" class="com.chl.spring5.IOC.Course">
            <property name="cname" value="dqqqq"></property>
        </bean>
-       <bean id="course2" class="com.chl.spring5.Course">
+       <bean id="course2" class="com.chl.spring5.IOC.Course">
            <property name="cname" value="wqqqq"></property>
        </bean>
 
       <!--工厂bean-->
-       <bean id="mybean" class="com.chl.spring5.factorybean.MyBean"></bean>
+       <bean id="mybean" class="com.chl.spring5.IOC.factorybean.MyBean"></bean>
        <!--创建多实例，默认是单实例scope的属性值为prototype时，可以创建多实例
        设置singleton时加载spring配置文件时就会加创建单实例对象
        设置protot时，不是在加载spring配置文件时创建对象而是在调用个getBean时创建多实例对象
 
        -->
 
-       <bean id="book3" class="com.chl.spring5.Book" scope="prototype">
+       <bean id="book3" class="com.chl.spring5.IOC.Book" scope="prototype">
            <property name="bname">
                <null></null>
            </property>
@@ -96,8 +96,8 @@
            autowire="byName"  注入bean的值和类的属性名称要一致
            autowire="byType"
        -->
-       <bean id="dept" class="com.chl.spring5.autowire.Dept"></bean>
-       <bean id="emp" class="com.chl.spring5.autowire.Emp" autowire="byType"></bean>
+       <bean id="dept" class="com.chl.spring5.IOC.autowire.Dept"></bean>
+       <bean id="emp" class="com.chl.spring5.IOC.autowire.Emp" autowire="byType"></bean>
        <!--引入外部属性文件-->
     <!-- 数据库连接池 -->
         <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
@@ -113,7 +113,7 @@
       1.如果扫描多个包，多个包用逗号隔开
       2,扫描上层路径
       -->
-      <context:component-scan base-package="com.chl.spring5.service,com.chl.spring5.dao"></context:component-scan>
+      <context:component-scan base-package="com.chl.spring5.IOC.service,com.chl.spring5.IOC.dao"></context:component-scan>
     <!--
 
     use-default-filters="false" 表示不使用默认的filter,自己配置filter

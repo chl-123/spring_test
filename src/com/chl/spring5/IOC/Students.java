@@ -1,4 +1,4 @@
-package com.chl.spring5;
+package com.chl.spring5.IOC;
 
 import java.util.Arrays;
 import java.util.List;

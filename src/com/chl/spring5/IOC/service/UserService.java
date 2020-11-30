@@ -1,6 +1,6 @@
-package com.chl.spring5.service;
+package com.chl.spring5.IOC.service;
 
-import com.chl.spring5.dao.UserDao;
+import com.chl.spring5.IOC.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

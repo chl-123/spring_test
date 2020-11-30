@@ -1,4 +1,4 @@
-package com.chl.spring5;
+package com.chl.spring5.IOC;
 
 public class User {
 

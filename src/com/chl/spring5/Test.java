@@ -1,9 +1,15 @@
 package com.chl.spring5;
 
-import com.chl.spring5.autowire.Emp;
-import com.chl.spring5.service.UserService;
+import com.chl.spring5.AOP.Proxy.UserDaoProxy;
+import com.chl.spring5.AOP.dao.UserDao;
+import com.chl.spring5.AOP.dao.UserDaoImp;
+import com.chl.spring5.IOC.*;
+import com.chl.spring5.IOC.autowire.Emp;
+import com.chl.spring5.IOC.service.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.lang.reflect.Proxy;
 
 public class Test {
 @org.junit.Test
@@ -84,5 +90,12 @@ public class Test {
         UserService userService=context.getBean("userService", UserService.class);
         userService.add();
         System.out.println("test");
+    }
+    @org.junit.Test
+    public void JDKProxyTest(){
+        UserDao userDao=new UserDaoImp();
+        Class[] interfaces={UserDao.class};
+        UserDao dao=(UserDao)Proxy.newProxyInstance(Test.class.getClassLoader(), interfaces, new UserDaoProxy(userDao));
+        System.out.println(dao.add(1,2));
     }
 }

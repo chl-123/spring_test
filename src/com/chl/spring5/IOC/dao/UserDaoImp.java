@@ -1,4 +1,4 @@
-package com.chl.spring5.dao;
+package com.chl.spring5.IOC.dao;
 
 import org.springframework.stereotype.Repository;
 

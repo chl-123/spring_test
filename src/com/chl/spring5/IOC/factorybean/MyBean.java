@@ -1,6 +1,6 @@
-package com.chl.spring5.factorybean;
+package com.chl.spring5.IOC.factorybean;
 
-import com.chl.spring5.Course;
+import com.chl.spring5.IOC.Course;
 import org.springframework.beans.factory.FactoryBean;
 
 public class MyBean implements FactoryBean<Course> {//实现工厂bean的方法，可以使定义类型和返回类型可以不一样

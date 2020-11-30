@@ -1,4 +1,4 @@
-package com.chl.spring5.autowire;
+package com.chl.spring5.IOC.autowire;
 
 public class Emp {
     private Dept dept;
