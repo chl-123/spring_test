@@ -3,9 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
-                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
      <bean id="User" class="com.chl.spring5.IOC.User"></bean>
       <!--用set方法注入-->
        <bean id="book" class="com.chl.spring5.IOC.Book">
@@ -130,5 +132,19 @@
 
           <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
       </context:component-scan>
+
     -->
+    <!--开启注解扫描-->
+    <bean id="user" class="com.chl.spring5.AOP.anno.User"></bean>
+    <bean id="userproxy" class="com.chl.spring5.AOP.anno.UserProxy"></bean>
+    <!--基于xml配置文件的AspectJ-->
+    <aop:config>
+        <aop:pointcut id="p" expression="execution(* com.chl.spring5.AOP.anno.User(..))"/>
+        <aop:aspect ref="userProxy">
+            <aop:before method="before" pointcut-ref="p"></aop:before>
+        </aop:aspect>
+    </aop:config>
+    <context:component-scan base-package="com.chl.spring5.AOP.anno"></context:component-scan>
+    <!--开启Aspect生成代理对象-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 </beans>

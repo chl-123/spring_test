@@ -4,6 +4,7 @@ import com.chl.spring5.AOP.Proxy.UserDaoProxy;
 import com.chl.spring5.AOP.dao.UserDao;
 import com.chl.spring5.AOP.dao.UserDaoImp;
 import com.chl.spring5.IOC.*;
+import com.chl.spring5.AOP.anno.User;
 import com.chl.spring5.IOC.autowire.Emp;
 import com.chl.spring5.IOC.service.UserService;
 import org.springframework.context.ApplicationContext;
@@ -97,5 +98,12 @@ public class Test {
         Class[] interfaces={UserDao.class};
         UserDao dao=(UserDao)Proxy.newProxyInstance(Test.class.getClassLoader(), interfaces, new UserDaoProxy(userDao));
         System.out.println(dao.add(1,2));
+    }
+    @org.junit.Test
+    public void AopAnno(){
+        ApplicationContext context=new ClassPathXmlApplicationContext("beans.xml");
+        User user=context.getBean("user", User.class);
+        System.out.println(user);
+        user.add();
     }
 }
