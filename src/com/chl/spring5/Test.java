@@ -1,12 +1,15 @@
 package com.chl.spring5;
 
 import com.chl.spring5.AOP.Proxy.UserDaoProxy;
+import com.chl.spring5.AOP.anno.User;
 import com.chl.spring5.AOP.dao.UserDao;
 import com.chl.spring5.AOP.dao.UserDaoImp;
-import com.chl.spring5.IOC.*;
-import com.chl.spring5.AOP.anno.User;
+import com.chl.spring5.IOC.Book;
+import com.chl.spring5.IOC.Course;
+import com.chl.spring5.IOC.Orders;
+import com.chl.spring5.IOC.Students;
 import com.chl.spring5.IOC.autowire.Emp;
-import com.chl.spring5.IOC.service.UserService;
+import com.chl.spring5.TX.service.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -81,7 +84,7 @@ public class Test {
 
         ApplicationContext context=new ClassPathXmlApplicationContext("beans.xml");
         UserService userService=context.getBean("userService", UserService.class);
-        userService.add();
+        //userService.add();
     }
     //注解测试
     @org.junit.Test
@@ -89,7 +92,7 @@ public class Test {
 
         ApplicationContext context=new ClassPathXmlApplicationContext("beans.xml");
         UserService userService=context.getBean("userService", UserService.class);
-        userService.add();
+       // userService.add();
         System.out.println("test");
     }
     @org.junit.Test
@@ -105,5 +108,12 @@ public class Test {
         User user=context.getBean("user", User.class);
         System.out.println(user);
         user.add();
+    }
+    @org.junit.Test
+    public void TransactionTest(){
+        ApplicationContext context=new ClassPathXmlApplicationContext("beans2.xml");
+        UserService user=context.getBean("userService", UserService.class);
+        //System.out.println(user);
+        user.accountMoney();
     }
 }

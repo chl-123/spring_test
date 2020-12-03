@@ -4,10 +4,12 @@
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
      <bean id="User" class="com.chl.spring5.IOC.User"></bean>
       <!--用set方法注入-->
        <bean id="book" class="com.chl.spring5.IOC.Book">
@@ -110,7 +112,7 @@
             <property name="password" value="${property.password}" />
             <property name="driverClassName" value="${property.driverClassName}" />
         </bean>
-      <!--
+
       开启注解扫描
       1.如果扫描多个包，多个包用逗号隔开
       2,扫描上层路径

@@ -5,6 +5,7 @@
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/beans.xml</file>
+          <file>file://$MODULE_DIR$/src/beans2.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -219,6 +220,15 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/mysql-connector-java-5.1.7-bin.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/mysql-connector-java-8.0.16.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
