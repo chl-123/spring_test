@@ -112,7 +112,7 @@
             <property name="password" value="${property.password}" />
             <property name="driverClassName" value="${property.driverClassName}" />
         </bean>
-
+<!--
       开启注解扫描
       1.如果扫描多个包，多个包用逗号隔开
       2,扫描上层路径
